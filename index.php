@@ -25,7 +25,15 @@ $router->map('GET', '/contact', function() {
     echo 'Contact';
 }, 'contact');
 $router->map('GET', '/register[/]?', function() {
-    echo 'Register';
+    require_once __DIR__ . '/src/View/register.php';
+}, 'register');
+$router->map('POST', '/register[/]?', function() use ($controller) {
+    $email = $_POST['Email'];
+    $fName = $_POST['Fname'];
+    $lName = $_POST['Lname'];
+    $password = $_POST['Password'];
+    $confirmPassword = $_POST['ConfirmPassword'];
+    $controller->AuthContoller($email, $fName, $lName, $password, $confirmPassword);
 }, 'register');
 
 

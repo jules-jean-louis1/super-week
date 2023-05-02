@@ -13,4 +13,15 @@ class MyModel extends Database
         $users = $req->fetchAll(\PDO::FETCH_ASSOC);
         return $users;
     }
+    public function register($email, $fName, $lName, $password)
+    {
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare('INSERT INTO user (email, first_name, last_name, password) VALUES (:email, :first_name, :last_name, :password)');
+        $req->execute(array(
+            'email' => $email,
+            'first_name' => $fName,
+            'last_name' => $lName,
+            'password' => $password
+        ));
+    }
 }
