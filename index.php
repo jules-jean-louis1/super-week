@@ -36,7 +36,6 @@ $router->map('POST', '/register[/]?', function() use ($controller) {
     $controller->AuthContoller($email, $fName, $lName, $password, $confirmPassword);
 }, 'register');
 
-
 $match = $router->match();
 
 if( $match && is_callable( $match['target'] ) ) {
