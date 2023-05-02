@@ -36,6 +36,3 @@ if( $match && is_callable( $match['target'] ) ) {
     echo "404 Page Not Found";
 }
 
-$myController = new MyController();
-$myController->List();
-

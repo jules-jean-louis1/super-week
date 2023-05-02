@@ -10,7 +10,7 @@ class MyModel extends Database
         $bdd = $this->getBdd();
         $req = $bdd->prepare('SELECT * FROM user');
         $req->execute();
-        $users = $req->fetchAll();
+        $users = $req->fetchAll(\PDO::FETCH_ASSOC);
         return $users;
     }
 }
