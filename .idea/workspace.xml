@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f960b6e9-7e49-4812-8026-d395972f7d6c" name="Changes" comment="ajout sql" />
+    <list default="true" id="f960b6e9-7e49-4812-8026-d395972f7d6c" name="Changes" comment="Ajout autoloader">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/MyController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/MyView.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/MyModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/MyModel.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683028928804</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ajout autoloader">
+      <created>1683030724378</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683030724378</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,6 +152,7 @@
     <MESSAGE value="ajout des erreurs" />
     <MESSAGE value="test avec les users" />
     <MESSAGE value="ajout sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout sql" />
+    <MESSAGE value="Ajout autoloader" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout autoloader" />
   </component>
 </project>

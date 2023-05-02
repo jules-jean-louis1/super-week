@@ -16,8 +16,8 @@ $router->setBasePath("/super-week");
 $router->map('GET', '/', function() {
     echo "Home";
 }, 'home');
-$router->map('GET', '/users/[i:id]', function($id) {
-    echo "Hello utilisateurs $id";
+$router->map('GET', '/users', function() {
+    echo "Hello User";
 }, 'user');
 $router->map('GET', '/about', function() {
     echo 'About';
@@ -35,4 +35,7 @@ if( $match && is_callable( $match['target'] ) ) {
     http_response_code(404);
     echo "404 Page Not Found";
 }
+
+$myController = new MyController();
+$myController->List();
 
