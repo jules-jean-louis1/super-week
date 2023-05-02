@@ -8,6 +8,9 @@ $router->setBasePath("/super-week");
 $router->map('GET', '/', function() {
     echo "Home";
 }, 'home');
+$router->map('GET', '/users/[i:id]', function($id) {
+    echo "Hello utilisateurs $id";
+}, 'user');
 $router->map('GET', '/about', function() {
     echo 'About';
 }, 'about');
