@@ -13,15 +13,30 @@ class MyModel extends Database
         $users = $req->fetchAll(\PDO::FETCH_ASSOC);
         return $users;
     }
-    public function register($email, $fName, $lName, $password)
+    public function register($email, $fName, $lName, $password, $confirmPassword)
     {
         $bdd = $this->getBdd();
-        $req = $bdd->prepare('INSERT INTO user (email, first_name, last_name, password) VALUES (:email, :first_name, :last_name, :password)');
-        $req->execute(array(
-            'email' => $email,
-            'first_name' => $fName,
-            'last_name' => $lName,
-            'password' => $password
+        $req1 = $bdd->prepare('SELECT * FROM user WHERE email = :email');
+        $req1->execute(array(
+            'email' => $email
         ));
+        $user = $req1->fetch();
+        if ($user) {
+            return false;
+        } else {
+            if ($password == $confirmPassword) {
+                $password = password_hash($password, PASSWORD_DEFAULT);
+                $req2 = $bdd->prepare('INSERT INTO user (email, fName, lName, password) VALUES (:email, :fName, :lName, :password)');
+                $req2->execute(array(
+                    'email' => $email,
+                    'fName' => $fName,
+                    'lName' => $lName,
+                    'password' => $password
+                ));
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }

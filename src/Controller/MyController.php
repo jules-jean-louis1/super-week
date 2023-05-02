@@ -13,6 +13,6 @@ class MyController
     public function AuthContoller()
     {
         $userModel = new MyModel();
-        $users = $userModel->register($email, $fName, $lName, $password);
+        $users = $userModel->register($email, $fName, $lName, $password, $confirmPassword);
     }
 }
