@@ -1,20 +1,26 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $router = new AltoRouter();
-$router->setBasePath('/super-week');
+
+$router->setBasePath("/super-week");
 
 $router->map('GET', '/', function() {
-    echo 'Hello World';
-});
-$router->map('GET', '/hello/[a:name]', function($name) {
-    echo 'Hello ' . $name;
-});
+    echo "Home";
+}, 'home');
+$router->map('GET', '/about', function() {
+    echo 'About';
+}, 'about');
+$router->map('GET', '/contact', function() {
+    echo 'Contact';
+}, 'contact');
 
 $match = $router->match();
 
-if ($match && is_callable($match['target'])) {
-    call_user_func_array($match['target'], $match['params']);
+if( $match && is_callable( $match['target'] ) ) {
+    call_user_func_array( $match['target'], $match['params'] );
 } else {
-    header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+    // no route was matched
+    http_response_code(404);
+    echo "404 Page Not Found";
 }
