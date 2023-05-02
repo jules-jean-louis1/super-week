@@ -7,7 +7,6 @@ use App\View\MyView;
 
 $controller = new MyController();
 $model = new MyModel();
-$view = new MyView();
 
 $router = new AltoRouter();
 
@@ -25,6 +24,10 @@ $router->map('GET', '/about', function() {
 $router->map('GET', '/contact', function() {
     echo 'Contact';
 }, 'contact');
+$router->map('GET', '/register[/]?', function() {
+    echo 'Register';
+}, 'register');
+
 
 $match = $router->match();
 
