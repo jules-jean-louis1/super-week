@@ -22,17 +22,17 @@ CREATE TABLE IF NOT EXISTS book (
 -- Table user
 INSERT INTO user (email, first_name, last_name, password)
 VALUES
-    ('john.doe@sfr.fr', 'John', 'Doe', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('jane.doe@gmail.com', 'Jane', 'Doe', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('bob.smith@hotmail.com', 'Bob', 'Smith', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('alice.smith@sfr.fr', 'Alice', 'Smith', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('peter.johnson@gmail.com', 'Peter', 'Johnson', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('julia.brown@hotmail.com', 'Julia', 'Brown', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('mark.taylor@gmail.com', 'Mark', 'Taylor', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('lisa.garcia@sfr.fr', 'Lisa', 'Garcia', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('robert.wilson@gmail.com', 'Robert', 'Wilson', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('sarah.anderson@hotmail.com', 'Sarah', 'Anderson', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
-    ('david.lee@sfr.fr', 'David', 'Lee', '$2y$10$zEUpvZZDJBFfv20WHjqztuu8xwuXhtjK0IW6zGg6NrbU6LOKU6iI2'),
+    ('john.doe@gmail.com', 'John', 'Doe', '$2y$10$7CfSZyjKv2X68egR8j5.LOBP5zZc3m3HTjKpTw35Jk6vpLsmmKjmu'),
+    ('jane.doe@hotmail.com', 'Jane', 'Doe', '$2y$10$v2n1kAFNkwFeU6XZU1B0l.zBZJLp7/N/iUG0fHLI2Q0nbzhAMJrQ2'),
+    ('bob.smith@sfr.fr', 'Bob', 'Smith', '$2y$10$8Jg6xIMyMKf7tLqWlZTEAOzZgERryZn2vJOhhR8juFVxIHZtKjYF6'),
+    ('alice.smith@gmail.com', 'Alice', 'Smith', '$2y$10$pzsKjG.mSvdSxWb6jJU6buZGYlFZLJmIcUR.Vsj/ZBtkyUPr41oi2'),
+    ('peter.johnson@hotmail.com', 'Peter', 'Johnson', '$2y$10$kq3jDnAG/FlgMLOxhLJMC.m3l9B1ZGvjzVLjWJ8R7vBaQZYtK0Fzm'),
+    ('julia.brown@sfr.fr', 'Julia', 'Brown', '$2y$10$NZrA2h1.SgtXzX9Zlr01VOH1LlZaFhzyEBgAd6jJy6SjU6GzNT7Ha'),
+    ('mark.taylor@gmail.com', 'Mark', 'Taylor', '$2y$10$liiixldjpupvPHMKIUXW8.cpsnmZDhqVZebd57LlLO0igzQvQeW7m'),
+    ('lisa.garcia@hotmail.com', 'Lisa', 'Garcia', '$2y$10$Nl6TquVKhEKNy6GRS7JpveDwUgV7U1Zm4cnV3JUnKGgkLE28OFzX2'),
+    ('robert.wilson@sfr.fr', 'Robert', 'Wilson', '$2y$10$jFRJl0MWllydIHDKtPTPUe5GDEQJUXAQi5DC5jFOon5c5NNNCK1nW'),
+    ('sarah.anderson@gmail.com', 'Sarah', 'Anderson', '$2y$10$xl5c5Fr5Gm/lPH7zX9yQxum3qPmLdPmFsvlLZvxRfrHlmjCvOeqT6'),
+    ('david.lee@sfr.fr', 'David', 'Lee', '$2y$10$i4saxs3QIgF7W8zH/Zx60uzMC0/sEY0kiBMLRWUMsjfi/fL0lbiFe'),
     ('john.smith@gmail.com', 'John', 'Smith', '$2y$10$6PpG/IXyC6UbzQr1r3qf3.OvGfmWbzInO2O4.d3q3kzvF5Wguy8lS'),
     ('jane.doe@hotmail.com', 'Jane', 'Doe', '$2y$10$RYnmWzX8uzA0wdY38AYFi.pBZtWyWxrsn0AeLOEJxBvQF1nWzXimK'),
     ('bob.johnson@sfr.fr', 'Bob', 'Johnson', '$2y$10$bdzN/ROX5S5S5N5P6.qJU.TFhU6HdRdSHpUyJsbBMrC9XO2r/yq3a'),
@@ -41,8 +41,7 @@ VALUES
     ('julia.anderson@sfr.fr', 'Julia', 'Anderson', '$2y$10$pl8YYvGk4jMw2F3MliS5OeFl5oh5DJ/u.tB6jXUk.nbr2vFJZ7VwG'),
     ('mark.smith@gmail.com', 'Mark', 'Smith', '$2y$10$tCGgZPugjwTWwEQmG.KCWeDmIjMvT.Q1xQk9/RRKj8oGZIzxBJwR6'),
     ('lisa.johnson@hotmail.com', 'Lisa', 'Johnson', '$2y$10$ymZ81FWL.hEzAbLwdYrK8eKcLb7iG0X9AVRU81ecZIvCZLsEwajbu'),
-    ('robert.brown@sfr.fr', 'Robert', 'Brown', '$2y$10$zJmfi/w.PahbxKjV7L8yv.EuLIqbRz9HXo4W4NzVTv4hKjQw3q5BW'),
-
+    ('robert.brown@sfr.fr', 'Robert', 'Brown', '$2y$10$zJmfi/w.PahbxKjV7L8yv.EuLIqbRz9HXo4W4NzVTv4hKjQw3q5BW');
 
 -- Table book
 INSERT INTO book (title, content, id_user)
@@ -66,4 +65,3 @@ VALUES
     ('Book 17', 'Content of book 17', 4),
     ('Book 18', 'Content of book 18', 6),
     ('Book 19', 'Content of book 19', 6);
-    ('Book 20', 'Content of book 20', 6);
