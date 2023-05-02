@@ -1,6 +1,14 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
+use App\Controller\MyController;
+use App\Model\MyModel;
+use App\View\MyView;
+
+$controller = new MyController();
+$model = new MyModel();
+$view = new MyView();
+
 $router = new AltoRouter();
 
 $router->setBasePath("/super-week");
@@ -27,3 +35,4 @@ if( $match && is_callable( $match['target'] ) ) {
     http_response_code(404);
     echo "404 Page Not Found";
 }
+
