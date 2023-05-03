@@ -46,4 +46,10 @@ class BookController
         echo json_encode($errors);
         exit();
     }
+    public function findAll()
+    {
+        $bookModel = new MyModel();
+        $books = $bookModel->findAll();
+        require_once __DIR__ . '/../../src/View/books.php';
+    }
 }
