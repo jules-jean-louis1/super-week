@@ -10,9 +10,4 @@ class MyController
         $users = $userModel->findAll();
         echo json_encode($users);
     }
-    public function AuthContoller()
-    {
-        $userModel = new MyModel();
-        $users = $userModel->register($email, $fName, $lName, $password, $confirmPassword);
-    }
 }

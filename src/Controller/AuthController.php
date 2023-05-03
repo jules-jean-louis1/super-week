@@ -79,7 +79,7 @@ class AuthController
         } elseif (strlen($password) < 6) {
             $errors['password'] = 'Le mot de passe doit contenir au moins 6 caractères';
         }
-        if ($errors === 0) {
+        if (count($errors) === 0) {
             $userModel = new MyModel();
             $login = $userModel->login($email, $password);
             if ($login === false) {
