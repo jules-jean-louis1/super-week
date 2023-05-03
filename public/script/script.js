@@ -13,20 +13,30 @@ if (formAddBook) {
                 const alert = document.querySelector('#error');
                 const alertTitle = document.querySelector('#titleError');
                 const alertDescription = document.querySelector('#descriptionError');
+                alert.innerHTML = '';
+                alertTitle.innerHTML = '';
+                alertDescription.innerHTML = '';
                 if (data.user) {
                     alert.innerHTML = `
-                    <p class="bg-red-100 p-2" >${data.user}</p>
-                  `;
-                } else if (data.title) {
-                    alert.innerHTML = `
-                    <p class="bg-red-100 p-2" >${data.title}</p>
-                  `;
-                } else if (data.description) {
-                    alert.innerHTML = `
-                    <p class="bg-red-100 p-2" >${data.description}</p>
-                  `;
+                        <p class="bg-red-100 p-2">${data.user}</p>
+                    `;
+                } if (data.title) {
+                    alertTitle.innerHTML = `
+                        <p class="text-red-500">${data.title}</p>
+                    `;
+                } if (data.description) {
+                    alertDescription.innerHTML = `
+                        <p class="text-red-500">${data.description}</p>
+                    `;
                 }
-
+                if (data.success) {
+                    alert.innerHTML = `
+                        <p class="bg-green-100 p-2">${data.success}</p>
+                    `;
+                    setTimeout(() => {
+                        window.location.href = '/super-week/books'; // modifier la route ici
+                    }, 1000);
+                }
             });
     });
 }
