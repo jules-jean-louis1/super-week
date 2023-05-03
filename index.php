@@ -4,11 +4,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Controller\MyController;
 use App\Controller\AuthController;
+use App\Controller\UserController;
 use App\Model\MyModel;
 use App\View\MyView;
 
 $controller = new MyController();
 $authController = new AuthController();
+$userController = new UserController();
 $model = new MyModel();
 
 $router = new AltoRouter();
@@ -51,8 +53,11 @@ if (isset($_SESSION['user'])) {
 }
 
 // On affiche les informations selon l'id de l'utilisateur
-$router->map('GET', '/user/[i:id]', function($id) use ($authController) {
-    $authController->showUser($id);
+$router->map('GET', '/user/[i:id]', function($id) use ($userController) {
+    $user = $userController->getInfoById($id);
+
+    // inclure le contenu de la vue
+    require_once __DIR__ . '/src/View/User.php';
 }, 'user_id');
 
 $match = $router->match();
