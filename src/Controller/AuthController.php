@@ -53,7 +53,7 @@ class AuthController
             $users = $userModel->verifyEmail($email);
             if ($users === false) {
                 $userModel->register($email, $fName, $lName, $password);
-                // rediriger l'utilisateur vers une page de succès d'inscription ou vers la page de connexion
+                $errors['success'] = 'Votre compte a bien été créé';
             } else {
                 $errors['email'] = 'L\'email existe déjà';
             }
