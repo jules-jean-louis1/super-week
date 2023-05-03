@@ -1,4 +1,6 @@
 const formAddBook = document.querySelector('#addBooksForm');
+const displayAllUsers = document.querySelector('#displayAllUsers');
+const displayUsers = document.querySelector('#displayUsers');
 
 if (formAddBook) {
     formAddBook.addEventListener('submit', (e) => {
@@ -40,3 +42,29 @@ if (formAddBook) {
             });
     });
 }
+if (displayAllUsers) {
+    displayAllUsers.addEventListener('click', (e) => {
+        e.preventDefault();
+        fetch('/super-week/users/all/')
+            .then(res => res.json())
+            .then(data => {
+                displayUsers.innerHTML = '';
+                data.forEach(user => {
+                    displayUsers.innerHTML += `
+            <div class="flex w-1/3">
+              <div class="w-full">
+                <div class="bg-gray-100 p-2 m-2">
+                  <p class="text-gray-500">ID: ${user.id}</p>
+                  <p class="text-gray-500">Prénom: ${user.first_name}</p>
+                  <p class="text-gray-500">Nom: ${user.last_name}</p>
+                  <p class="text-gray-500">Email: ${user.email}</p>
+                </div>
+              </div>
+            </div>
+          `;
+                });
+            });
+        displayUsers.innerHTML = '';
+    });
+}
+

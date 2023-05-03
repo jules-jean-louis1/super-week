@@ -2,13 +2,11 @@
 session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 
-use App\Controller\MyController;
 use App\Controller\AuthController;
 use App\Controller\UserController;
 use App\Controller\BookController;
 use App\Model\MyModel;
 
-$controller = new MyController();
 $authController = new AuthController();
 $userController = new UserController();
 $bookController = new BookController();
@@ -21,9 +19,15 @@ $router->setBasePath("/super-week");
 $router->map('GET', '/', function() {
     echo "Home";
 }, 'home');
-$router->map('GET', '/users', function() {
-    echo "Hello Users";
-}, 'user');
+
+$router->map('GET', '/users[/]', function () use ($userController) {
+    $userController->displayPage();
+}, 'users');
+// Afficher tous les utilisateurs
+$router->map('GET', '/users/all[/]', function () use ($userController) {
+    $userController->getAllUsers();
+}, 'users_all');
+
 $router->map('GET', '/about', function() {
     echo 'About';
 }, 'about');
@@ -54,9 +58,7 @@ if (isset($_SESSION['user'])) {
 }
 // On affiche les informations selon l'id de l'utilisateur
 $router->map('GET', '/user/[i:id]', function($id) use ($userController) {
-    $user = $userController->getInfoById($id);
-    // inclure le contenu de la vue
-    require_once __DIR__ . '/src/View/User.php';
+    $userController->getInfoById($id);
 }, 'user_id');
 // On affiche le formulaire d'ajout de livre
 $router->map('GET', '/books/write[/]?', function() use ($bookController) {
