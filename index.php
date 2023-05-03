@@ -5,12 +5,14 @@ require_once __DIR__ . '/vendor/autoload.php';
 use App\Controller\MyController;
 use App\Controller\AuthController;
 use App\Controller\UserController;
+use App\Controller\BookController;
 use App\Model\MyModel;
 use App\View\MyView;
 
 $controller = new MyController();
 $authController = new AuthController();
 $userController = new UserController();
+$bookController = new BookController();
 $model = new MyModel();
 
 $router = new AltoRouter();
@@ -51,14 +53,21 @@ if (isset($_SESSION['user'])) {
         $authController->logout();
     }, 'logout');
 }
-
 // On affiche les informations selon l'id de l'utilisateur
 $router->map('GET', '/user/[i:id]', function($id) use ($userController) {
     $user = $userController->getInfoById($id);
-
     // inclure le contenu de la vue
     require_once __DIR__ . '/src/View/User.php';
 }, 'user_id');
+// On affiche le formulaire d'ajout de livre
+$router->map('GET', '/books/write[/]?', function() use ($bookController) {
+    $bookController->showWriteForm();
+}, 'write');
+$router->map('POST', '/books/write[/]?', function() use ($bookController) {
+    $bookController->addBook();
+}, 'write_post');
+
+
 
 $match = $router->match();
 
@@ -78,10 +87,10 @@ if( $match && is_callable( $match['target'] ) ) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="src/styles/style.css">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Script JS -->
+    <script defer src="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/public/script/script.js"></script>
     <title></title>
 </head>
 <body>
