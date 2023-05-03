@@ -13,6 +13,15 @@ class MyModel extends Database
         $users = $req->fetchAll(\PDO::FETCH_ASSOC);
         return $users;
     }
+    public function findOneById($id)
+    {
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare('SELECT * FROM user WHERE id = :id');
+        $req->bindParam(':id', $id);
+        $req->execute();
+        $user = $req->fetch(\PDO::FETCH_ASSOC);
+        return $user;
+    }
     public function verifyEmail($email)
     {
         $bdd = $this->getBdd();

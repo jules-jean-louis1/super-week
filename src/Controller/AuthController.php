@@ -16,6 +16,12 @@ class AuthController
             return false;
         }
     }
+    public function getInfoById($id)
+    {
+        $userModel = new MyModel();
+        $user = $userModel->findOneById($id);
+        return $user;
+    }
     public function register()
     {
         $email = $this->verifyField('Email');

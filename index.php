@@ -50,6 +50,11 @@ if (isset($_SESSION['user'])) {
     }, 'logout');
 }
 
+// On affiche les informations selon l'id de l'utilisateur
+$router->map('GET', '/user/[i:id]', function($id) use ($authController) {
+    $authController->showUser($id);
+}, 'user_id');
+
 $match = $router->match();
 
 if( $match && is_callable( $match['target'] ) ) {
