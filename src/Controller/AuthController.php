@@ -39,7 +39,7 @@ class AuthController
         if (!$password) {
             $errors['password'] = 'Le champ mot de passe est requis';
         } elseif (strlen($password) < 6) {
-            $errors['password'] = 'Le mot de passe doit contenir au moins 8 caractères';
+            $errors['password'] = 'Le mot de passe doit contenir au moins 6 caractères';
         }
         if (!$confirmPassword) {
             $errors['confirm_password'] = 'Le champ confirmation du mot de passe est requis';
@@ -60,5 +60,37 @@ class AuthController
         }
         require_once __DIR__ . '/../View/register.php';
     }
-
+    public function showLoginForm()
+    {
+        require_once __DIR__ . '/../../src/View/login.php';
+    }
+    public function login()
+    {
+        $email = $this->verifyField('Email');
+        $password = $this->verifyField('Password');
+        $errors = [];
+        if (!$email) {
+            $errors['email'] = 'Le champ email est requis';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Le champ email n\'est pas valide';
+        }
+        if (!$password) {
+            $errors['password'] = 'Le champ mot de passe est requis';
+        } elseif (strlen($password) < 6) {
+            $errors['password'] = 'Le mot de passe doit contenir au moins 6 caractères';
+        }
+        if ($errors === 0) {
+            $userModel = new MyModel();
+            $login = $userModel->login($email, $password);
+            if ($login === false) {
+                $errors['email'] = 'L\'email ou le mot de passe est incorrect';
+            } else {
+                $_SESSION['id'] = $login['id'];
+                $_SESSION['email'] = $login;
+                header('Location: /super-week');
+                exit();
+            }
+        }
+        require_once __DIR__ . '/../View/login.php';
+    }
 }

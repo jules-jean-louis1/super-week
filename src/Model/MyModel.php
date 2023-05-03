@@ -38,4 +38,22 @@ class MyModel extends Database
             ':password' => $password
         ]);
     }
+    public function login(string $email, string $password)
+    {
+        $bdd = $this->getBdd();
+        $req = $bdd->prepare('SELECT * FROM user WHERE email = :email');
+        $req->execute([
+            ':email' => $email
+        ]);
+        $user = $req->fetch(\PDO::FETCH_ASSOC);
+        if ($user === false) {
+            return false;
+        } else {
+            if (password_verify($password, $user['password'])) {
+                return $user;
+            } else {
+                return false;
+            }
+        }
+    }
 }

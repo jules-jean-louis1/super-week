@@ -34,6 +34,10 @@ $router->map('GET', '/register[/]?', function() use ($authController) {
 $router->map('POST', '/register[/]?', function() use ($authController) {
     $authController->register();
 }, 'register_post');
+// On affiche le formulaire de connexion
+$router->map('GET', '/login[/]?', function() use ($authController) {
+    $authController->showLoginForm();
+}, 'login');
 
 $match = $router->match();
 
