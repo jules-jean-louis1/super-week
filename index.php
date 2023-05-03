@@ -7,7 +7,6 @@ use App\Controller\AuthController;
 use App\Controller\UserController;
 use App\Controller\BookController;
 use App\Model\MyModel;
-use App\View\MyView;
 
 $controller = new MyController();
 $authController = new AuthController();
