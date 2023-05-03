@@ -38,6 +38,10 @@ $router->map('POST', '/register[/]?', function() use ($authController) {
 $router->map('GET', '/login[/]?', function() use ($authController) {
     $authController->showLoginForm();
 }, 'login');
+// On vérifie les champs du formulaire de connexion
+$router->map('POST', '/login[/]?', function() use ($authController) {
+    $authController->login();
+}, 'login_post');
 
 $match = $router->match();
 
