@@ -2,10 +2,12 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Controller\MyController;
+use App\Controller\AuthController;
 use App\Model\MyModel;
 use App\View\MyView;
 
 $controller = new MyController();
+$authController = new AuthController();
 $model = new MyModel();
 
 $router = new AltoRouter();
@@ -24,17 +26,14 @@ $router->map('GET', '/about', function() {
 $router->map('GET', '/contact', function() {
     echo 'Contact';
 }, 'contact');
-$router->map('GET', '/register[/]?', function() {
-    require_once __DIR__ . '/src/View/register.php';
+// On affiche le formulaire d'inscription
+$router->map('GET', '/register[/]?', function() use ($authController) {
+    $authController->showRegisterForm();
 }, 'register');
-$router->map('POST', '/register[/]?', function() use ($controller) {
-    $email = $_POST['Email'];
-    $fName = $_POST['Fname'];
-    $lName = $_POST['Lname'];
-    $password = $_POST['Password'];
-    $confirmPassword = $_POST['ConfirmPassword'];
-    $controller->AuthContoller($email, $fName, $lName, $password, $confirmPassword);
-}, 'register');
+// On vérifie les champs du formulaire d'inscription
+$router->map('POST', '/register[/]?', function() use ($authController) {
+    $authController->register();
+}, 'register_post');
 
 $match = $router->match();
 
