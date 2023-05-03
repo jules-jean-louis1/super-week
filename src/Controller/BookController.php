@@ -53,4 +53,10 @@ class BookController
         $books = $bookModel->findAll();
         require_once __DIR__ . '/../../src/View/books.php';
     }
+    public function getInfoById($id)
+    {
+        $bookModel = new BooksModel();
+        $book = $bookModel->getInfoById($id);
+        require_once __DIR__ . '/../../src/View/book.php';
+    }
 }
