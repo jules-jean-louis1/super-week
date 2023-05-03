@@ -68,11 +68,11 @@ class MyModel extends Database
     public function addBook(string $title, string $description, int $userId)
     {
         $bdd = $this->getBdd();
-        $req = $bdd->prepare('INSERT INTO book (title, description, user_id) VALUES (:title, :description, :user_id)');
+        $req = $bdd->prepare('INSERT INTO book (title, content, id_user) VALUES (:title, :content, :id_user)');
         $req->execute([
             ':title' => $title,
-            ':description' => $description,
-            ':user_id' => $userId
+            ':content' => $description,
+            ':id_user' => $userId
         ]);
     }
 }

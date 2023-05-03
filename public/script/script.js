@@ -34,7 +34,7 @@ if (formAddBook) {
                         <p class="bg-green-100 p-2">${data.success}</p>
                     `;
                     setTimeout(() => {
-                        window.location.href = '/super-week/books'; // modifier la route ici
+                        window.location.href = '/super-week/books';
                     }, 1000);
                 }
             });
