@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <form action="" method="post">
     <input type="text" name="Email" placeholder="Email" class="p-2 bg-slate-200">
     <?php if (isset($errors['email'])): ?>

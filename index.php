@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Controller\MyController;
@@ -18,7 +19,7 @@ $router->map('GET', '/', function() {
     echo "Home";
 }, 'home');
 $router->map('GET', '/users', function() {
-    echo "Hello User";
+    echo "Hello Users";
 }, 'user');
 $router->map('GET', '/about', function() {
     echo 'About';
@@ -42,6 +43,12 @@ $router->map('GET', '/login[/]?', function() use ($authController) {
 $router->map('POST', '/login[/]?', function() use ($authController) {
     $authController->login();
 }, 'login_post');
+// On permet à l'utilisateur de se déconnecter
+if (isset($_SESSION['user'])) {
+    $router->map('GET', '/logout[/]?', function() use ($authController) {
+        $authController->logout();
+    }, 'logout');
+}
 
 $match = $router->match();
 
@@ -50,7 +57,10 @@ if( $match && is_callable( $match['target'] ) ) {
 } else {
     // no route was matched
     http_response_code(404);
-    echo "404 Page Not Found";
+    ?>
+    <h1 class="text-center font-bold">404 Page Not Found</h1>
+    <?php
+
 }
 ?>
 <html lang="fr">

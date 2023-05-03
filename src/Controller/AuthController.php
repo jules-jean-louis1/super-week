@@ -93,4 +93,10 @@ class AuthController
         }
         require_once __DIR__ . '/../View/login.php';
     }
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /super-week');
+        exit();
+    }
 }
