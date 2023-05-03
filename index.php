@@ -66,6 +66,10 @@ $router->map('GET', '/books/write[/]?', function() use ($bookController) {
 $router->map('POST', '/books/write[/]?', function() use ($bookController) {
     $bookController->addBook();
 }, 'write_post');
+// On affiche tous les livres
+$router->map('GET', '/books[/]?', function() use ($bookController) {
+    $bookController->findAll();
+}, 'books');
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Model\BooksModel;
 use App\Model\MyModel;
 class BookController
 {
@@ -48,7 +49,7 @@ class BookController
     }
     public function findAll()
     {
-        $bookModel = new MyModel();
+        $bookModel = new BooksModel();
         $books = $bookModel->findAll();
         require_once __DIR__ . '/../../src/View/books.php';
     }
