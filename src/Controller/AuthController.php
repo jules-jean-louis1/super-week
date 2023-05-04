@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Model\MyModel;
+use App\Model\UserModel;
 class AuthController
 {
     public function showRegisterForm()
@@ -49,7 +50,7 @@ class AuthController
         }
 
         if (count($errors) === 0) {
-            $userModel = new MyModel();
+            $userModel = new UserModel();
             $users = $userModel->verifyEmail($email);
             if ($users === false) {
                 $userModel->register($email, $fName, $lName, $password);
@@ -80,7 +81,7 @@ class AuthController
             $errors['password'] = 'Le mot de passe doit contenir au moins 6 caractères';
         }
         if (count($errors) === 0) {
-            $userModel = new MyModel();
+            $userModel = new UserModel();
             $login = $userModel->login(htmlspecialchars($email), htmlspecialchars($password));
             if ($login === false) {
                 $errors['error'] = 'L\'email ou le mot de passe est incorrect';
