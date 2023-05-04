@@ -19,6 +19,8 @@ $router->setBasePath("/super-week");
 $router->map('GET', '/', function () use ($homeController) {
     $homeController->displayHead('Homepage');
     $homeController->displayHeader();
+    $homeController->displayHomeBody();
+    $homeController->displayFooter();
 }, 'home');
 
 $router->map('GET', '/users[/]', function () use ($userController) {

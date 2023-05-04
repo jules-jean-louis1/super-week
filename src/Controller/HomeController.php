@@ -4,7 +4,7 @@ namespace App\Controller;
 
 class HomeController
 {
-    public function displayHome()
+    public function displayHomeBody()
     {
         require_once __DIR__ . '/../../src/View/home.php';
     }
