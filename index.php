@@ -95,16 +95,3 @@ if( $match && is_callable( $match['target'] ) ) {
 
 }
 ?>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Script JS -->
-    <script defer src="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/public/script/script.js"></script>
-    <title></title>
-</head>
-    <?php require_once __DIR__ . '/elements/header.php'; ?>
-<body>

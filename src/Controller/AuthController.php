@@ -59,7 +59,9 @@ class AuthController
                 $errors['email'] = 'L\'email existe déjà';
             }
         }
-        require_once __DIR__ . '/../View/register.php';
+        header('Content-Type: application/json');
+        echo json_encode($errors);
+        exit();
     }
     public function showLoginForm()
     {

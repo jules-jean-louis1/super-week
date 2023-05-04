@@ -6,6 +6,7 @@ const displayAllBooks = document.querySelector('#displayAllBooks');
 const btnSpecificUser = document.querySelector('#btnSpecificUser');
 const btnSpecificBook = document.querySelector('#btnSpecificBook');
 const formLogin = document.querySelector('#formLogin');
+const formRegister = document.querySelector('#formRegister');
 
 if (formAddBook) {
     formAddBook.addEventListener('submit', (e) => {
@@ -234,7 +235,7 @@ if (formLogin) {
                     Alert.innerHTML = '';
                     Alert.innerHTML = `
                         <p class="text-green-500 p-2 border-2 border-green-500 bg-green-500 bg-opacity-10 rounded">${data.success}</p>
-`                       ;
+                        `;
                     setTimeout(() => {
                         window.location.replace('/super-week');
                     } , 2500);
@@ -242,4 +243,49 @@ if (formLogin) {
             });
     });
 }
+// Register
+function alertSmall(data, selector) {
+    if (data) {
+        selector.innerHTML = '';
+        selector.innerHTML = data;
+    }
+}
+if (formRegister) {
+    formRegister.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await fetch('/super-week/register', {
+            method: 'POST',
+            body: new FormData(formRegister)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const smallFirstName = document.querySelector('#errorfName');
+                const smallLastName = document.querySelector('#errorlName');
+                const smallEmail = document.querySelector('#errorEmail');
+                const smallPassword = document.querySelector('#errorPassword');
+                const smallPasswordConfirm = document.querySelector('#errorC_Password');
+                const Alert = document.querySelector('#alertError');
+
+                alertSmall(data.fname, smallFirstName);
+                alertSmall(data.lname, smallLastName);
+                alertSmall(data.email, smallEmail);
+                alertSmall(data.password, smallPassword);
+                alertSmall(data.c_password, smallPasswordConfirm);
+                if (data.error) {
+                    Alert.innerHTML = '';
+                    Alert.innerHTML = `
+                        <p class="text-red-500 p-2 border-2 border-red-500 bg-red-500 bg-opacity-10 rounded">${data.error}</p>
+                    `;
+                }
+                if (data.success) {
+                    Alert.innerHTML = '';
+                    Alert.innerHTML = `
+                    <p class="text-green-500 p-2 border-2 border-green-500 bg-green-500 bg-opacity-10 rounded">${data.success}</p>
+                    `;
+                }
+                });
+            });
+}
+
 
