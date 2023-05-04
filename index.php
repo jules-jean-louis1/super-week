@@ -5,19 +5,21 @@ require_once __DIR__ . '/vendor/autoload.php';
 use App\Controller\AuthController;
 use App\Controller\UserController;
 use App\Controller\BookController;
+use App\Controller\HomeController;
 use App\Model\MyModel;
 
 $authController = new AuthController();
 $userController = new UserController();
 $bookController = new BookController();
+$homeController = new HomeController();
 $model = new MyModel();
 
 $router = new AltoRouter();
 
 $router->setBasePath("/super-week");
 
-$router->map('GET', '/', function() {
-    echo "Home";
+$router->map('GET', '/', function () use ($homeController) {
+    $homeController->displayHeader();
 }, 'home');
 
 $router->map('GET', '/users[/]', function () use ($userController) {
@@ -27,13 +29,6 @@ $router->map('GET', '/users[/]', function () use ($userController) {
 $router->map('GET', '/users/all[/]', function () use ($userController) {
     $userController->getAllUsers();
 }, 'users_all');
-
-$router->map('GET', '/about', function() {
-    echo 'About';
-}, 'about');
-$router->map('GET', '/contact', function() {
-    echo 'Contact';
-}, 'contact');
 // On affiche le formulaire d'inscription
 $router->map('GET', '/register[/]?', function() use ($authController) {
     $authController->showRegisterForm();
@@ -113,4 +108,5 @@ if( $match && is_callable( $match['target'] ) ) {
     <script defer src="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/public/script/script.js"></script>
     <title></title>
 </head>
+    <?php require_once __DIR__ . '/elements/header.php'; ?>
 <body>
