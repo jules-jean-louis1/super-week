@@ -46,11 +46,9 @@ $router->map('POST', '/login[/]?', function() use ($authController) {
     $authController->login();
 }, 'login_post');
 // On permet à l'utilisateur de se déconnecter
-if (isset($_SESSION['user'])) {
-    $router->map('GET', '/logout[/]?', function() use ($authController) {
-        $authController->logout();
-    }, 'logout');
-}
+$router->map('GET', '/logout[/]?', function() use ($authController) {
+    $authController->logout();
+}, 'logout');
 // On affiche le formulaire d'ajout d'utilisateur
 $router->map('GET', '/user[/]?', function() use ($userController) {
     $userController->showUserPage();

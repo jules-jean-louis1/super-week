@@ -5,6 +5,7 @@ const BtnDisplayAllBooks = document.querySelector('#buttonDisplayBooks');
 const displayAllBooks = document.querySelector('#displayAllBooks');
 const btnSpecificUser = document.querySelector('#btnSpecificUser');
 const btnSpecificBook = document.querySelector('#btnSpecificBook');
+const formLogin = document.querySelector('#formLogin');
 
 if (formAddBook) {
     formAddBook.addEventListener('submit', (e) => {
@@ -200,6 +201,45 @@ if (btnSpecificBook) {
                     }
                 });
         }
+    });
+}
+if (formLogin) {
+    formLogin.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await fetch('/super-week/login', {
+            method: 'POST',
+            body: new FormData(formLogin)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const smallEmail = document.querySelector('#errorEmail');
+                const smallPassword = document.querySelector('#errorPassword');
+                const Alert = document.querySelector('#alertMessage');
+                if (data.email){
+                    smallEmail.innerHTML = '';
+                    smallEmail.innerHTML = data.email;
+                }
+                if (data.password){
+                    smallPassword.innerHTML = '';
+                    smallPassword.innerHTML = data.password;
+                }
+                if (data.error){
+                    Alert.innerHTML = '';
+                    Alert.innerHTML = `
+                        <p class="text-red-500 p-2 border-2 border-red-500 bg-red-500 bg-opacity-10 rounded">${data.error}</p>
+                    `;
+                }
+                if (data.success){
+                    Alert.innerHTML = '';
+                    Alert.innerHTML = `
+                        <p class="text-green-500 p-2 border-2 border-green-500 bg-green-500 bg-opacity-10 rounded">${data.success}</p>
+`                       ;
+                    setTimeout(() => {
+                        window.location.replace('/super-week');
+                    } , 2500);
+                }
+            });
     });
 }
 

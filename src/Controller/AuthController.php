@@ -81,17 +81,18 @@ class AuthController
         }
         if (count($errors) === 0) {
             $userModel = new MyModel();
-            $login = $userModel->login($email, $password);
+            $login = $userModel->login(htmlspecialchars($email), htmlspecialchars($password));
             if ($login === false) {
-                $errors['email'] = 'L\'email ou le mot de passe est incorrect';
+                $errors['error'] = 'L\'email ou le mot de passe est incorrect';
             } else {
                 $_SESSION['id'] = $login['id'];
                 $_SESSION['email'] = $login;
-                header('Location: /super-week');
-                exit();
+                $errors['success'] = 'Vous êtes connecté';
             }
         }
-        require_once __DIR__ . '/../View/login.php';
+        header('Content-Type: application/json');
+        echo json_encode($errors);
+        exit();
     }
     public function logout()
     {
