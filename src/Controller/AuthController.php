@@ -5,10 +5,28 @@ use App\Model\MyModel;
 use App\Model\UserModel;
 class AuthController
 {
+    /**
+     * @return void
+     * Display the register form
+     */
     public function showRegisterForm()
     {
         require_once __DIR__ . '/../../src/View/register.php';
     }
+
+    /**
+     * @return void
+     * Display the login form
+     */
+    public function showLoginForm()
+    {
+        require_once __DIR__ . '/../../src/View/login.php';
+    }
+
+    /**
+     * @param $field
+     * @return false|mixed
+     */
     public function verifyField($field)
     {
         if (isset($_POST[$field]) && !empty(trim($_POST[$field]))) {
@@ -63,10 +81,6 @@ class AuthController
         echo json_encode($errors);
         exit();
     }
-    public function showLoginForm()
-    {
-        require_once __DIR__ . '/../../src/View/login.php';
-    }
     public function login()
     {
         $email = $this->verifyField('Email');
@@ -97,6 +111,11 @@ class AuthController
         echo json_encode($errors);
         exit();
     }
+
+    /**
+     * @return void
+     * Logout the user
+     */
     public function logout()
     {
         session_destroy();
