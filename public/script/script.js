@@ -4,6 +4,7 @@ const displayUsers = document.querySelector('#displayUsers');
 const BtnDisplayAllBooks = document.querySelector('#buttonDisplayBooks');
 const displayAllBooks = document.querySelector('#displayAllBooks');
 const btnSpecificUser = document.querySelector('#btnSpecificUser');
+const btnSpecificBook = document.querySelector('#btnSpecificBook');
 
 if (formAddBook) {
     formAddBook.addEventListener('submit', (e) => {
@@ -141,5 +142,41 @@ if (btnSpecificUser) {
         }
     });
 }
-
+if (btnSpecificBook) {
+    const id = document.querySelector('#book_id').value;
+    btnSpecificBook.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (id === '') {
+            const displaySpecificBook = document.querySelector('#displaySpecificBook');
+            displaySpecificBook.innerHTML = '';
+            displaySpecificBook.innerHTML = `
+                <p class="text-red-500">Veuillez renseigner un ID</p>
+            `;
+            return;
+        } else {
+            await fetch('/super-week/book/' + id)
+                .then(res => res.json())
+                .then(data => {
+                    const displaySpecificBook = document.querySelector('#displaySpecificBook');
+                    displaySpecificBook.innerHTML = '';
+                    if (data.error) {
+                        displaySpecificBook.innerHTML = `
+                        <p class="text-red-500">${data.error}</p>
+                    `;
+                    }
+                    if (data.book) {
+                        const book = data.book;
+                        displaySpecificBook.innerHTML += `
+                        <div class="flex w-1/3">
+                            <p class="text-gray-500">ID: ${book.id}</p>
+                            <p class="text-gray-500">Titre: ${book.title}</p>
+                            <p class="text-gray-500">Contenu: ${book.content}</p>
+                            <p class="text-gray-500">Ajouté par: ${book.first_name} ${book.last_name}</p>
+                        </div>
+                    `;
+                    }
+                });
+        }
+    });
+}
 

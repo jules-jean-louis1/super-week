@@ -63,10 +63,41 @@ class BookController
         echo json_encode($books);
         exit();
     }
+    public function verifyFieldGet($field)
+    {
+        if (isset($_GET[$field]) && !empty(trim($_GET[$field]))) {
+            return $_GET[$field];
+        } else {
+            return false;
+        }
+    }
     public function getInfoById($id)
     {
-        $bookModel = new BooksModel();
-        $book = $bookModel->getInfoById($id);
-        require_once __DIR__ . '/../../src/View/book.php';
+        $id = $this->verifyFieldGet('id');
+        if (!$id) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'L\'id est requis']);
+            exit();
+        } else if (!is_numeric($id)) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'L\'id doit être un nombre']);
+            exit();
+        } else if ($id < 1) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'L\'id doit être supérieur à 0']);
+            exit();
+        } else {
+            $bookModel = new BooksModel();
+            $book = $bookModel->getInfoById(htmlspecialchars($id));
+            if (!$book) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Le livre n\'existe pas']);
+                exit();
+            } else {
+                header('Content-Type: application/json');
+                echo json_encode($book);
+                exit();
+            }
+        }
     }
 }
