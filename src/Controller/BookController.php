@@ -63,18 +63,9 @@ class BookController
         echo json_encode($books);
         exit();
     }
-    public function verifyFieldGet($field)
-    {
-        if (isset($_GET[$field]) && !empty(trim($_GET[$field]))) {
-            return $_GET[$field];
-        } else {
-            return false;
-        }
-    }
     public function getInfoById($id)
     {
-        $id = $this->verifyFieldGet('id');
-        if (!$id) {
+        if (empty($id)) {
             header('Content-Type: application/json');
             echo json_encode(['error' => 'L\'id est requis']);
             exit();
@@ -95,7 +86,7 @@ class BookController
                 exit();
             } else {
                 header('Content-Type: application/json');
-                echo json_encode($book);
+                echo json_encode(['book' => $book]);
                 exit();
             }
         }

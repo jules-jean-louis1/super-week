@@ -46,6 +46,7 @@ if (formAddBook) {
             });
     });
 }
+
 if (displayAllUsers) {
     displayAllUsers.addEventListener('click', (e) => {
         e.preventDefault();
@@ -71,6 +72,7 @@ if (displayAllUsers) {
         displayUsers.innerHTML = '';
     });
 }
+
 if (BtnDisplayAllBooks) {
     BtnDisplayAllBooks.addEventListener('click', (e) => {
         e.preventDefault();
@@ -105,6 +107,7 @@ if (BtnDisplayAllBooks) {
             });
     });
 }
+
 if (btnSpecificUser) {
     btnSpecificUser.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -142,9 +145,10 @@ if (btnSpecificUser) {
         }
     });
 }
+
 if (btnSpecificBook) {
-    const id = document.querySelector('#book_id').value;
     btnSpecificBook.addEventListener('click', async (e) => {
+        const id = document.querySelector('#book_id').value;
         e.preventDefault();
         if (id === '') {
             const displaySpecificBook = document.querySelector('#displaySpecificBook');
@@ -166,13 +170,32 @@ if (btnSpecificBook) {
                     }
                     if (data.book) {
                         const book = data.book;
-                        displaySpecificBook.innerHTML += `
-                        <div class="flex w-1/3">
-                            <p class="text-gray-500">ID: ${book.id}</p>
-                            <p class="text-gray-500">Titre: ${book.title}</p>
-                            <p class="text-gray-500">Contenu: ${book.content}</p>
-                            <p class="text-gray-500">Ajouté par: ${book.first_name} ${book.last_name}</p>
-                        </div>
+                        const titlePage = document.querySelector('title');
+                        const h1Page = document.querySelector('#livreTitle');
+                        titlePage.innerHTML = '';
+                        h1Page.innerHTML = '';
+                        titlePage.innerHTML = `Livre: ${book.title}`;
+                        h1Page.innerHTML = `Livre: ${book.title}`;
+                        displaySpecificBook.innerHTML = `
+                        <table class="border border-gray-400">
+                            <thead class="bg-gray-200">
+                            <tr>
+                                <th class="border border-gray-400 px-4 py-2">Titre</th>
+                                <th class="border border-gray-400 px-4 py-2">Contenu</th>
+                                <th class="border border-gray-400 px-4 py-2">Ajouté par</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbodyBook">
+                            </tbody>
+                        </table>
+                        `;
+                        const tbodyBook = document.querySelector('#tbodyBook');
+                        tbodyBook.innerHTML += `
+                        <tr>
+                            <td class="border border-gray-400 px-4 py-2">${book.title}</td>
+                            <td class="border border-gray-400 px-4 py-2 max-w-40p w-7/12">${book.content}</td>
+                            <td class="border border-gray-400 px-4 py-2">${book.first_name} ${book.last_name}</td>
+                        </tr>
                     `;
                     }
                 });
