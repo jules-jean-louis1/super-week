@@ -69,8 +69,11 @@ $router->map('POST', '/books/write[/]?', function() use ($bookController) {
 }, 'write_post');
 // On affiche tous les livres
 $router->map('GET', '/books[/]?', function() use ($bookController) {
-    $bookController->findAll();
+    $bookController->displayBooks();
 }, 'books');
+$router->map('GET', '/books/all[/]?', function () use ($bookController) {
+    $bookController->findAll();
+}, 'books_all');
 // On affiche les informations selon l'id du livre
 $router->map('GET', '/book/[i:id]', function($id) use ($bookController) {
     $bookController->getInfoById($id);

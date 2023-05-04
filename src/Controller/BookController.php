@@ -9,6 +9,10 @@ class BookController
     {
         require_once __DIR__ . '/../../src/View/addBook.php';
     }
+    public function displayBooks()
+    {
+        require_once __DIR__ . '/../../src/View/books.php';
+    }
     public function verifyField($field)
     {
         if (isset($_POST[$field]) && !empty(trim($_POST[$field]))) {
@@ -51,7 +55,9 @@ class BookController
     {
         $bookModel = new BooksModel();
         $books = $bookModel->findAll();
-        require_once __DIR__ . '/../../src/View/books.php';
+        header('Content-Type: application/json');
+        echo json_encode($books);
+        exit();
     }
     public function getInfoById($id)
     {
