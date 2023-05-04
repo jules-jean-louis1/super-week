@@ -3,6 +3,7 @@ const displayAllUsers = document.querySelector('#displayAllUsers');
 const displayUsers = document.querySelector('#displayUsers');
 const BtnDisplayAllBooks = document.querySelector('#buttonDisplayBooks');
 const displayAllBooks = document.querySelector('#displayAllBooks');
+const btnSpecificUser = document.querySelector('#btnSpecificUser');
 
 if (formAddBook) {
     formAddBook.addEventListener('submit', (e) => {
@@ -101,6 +102,43 @@ if (BtnDisplayAllBooks) {
                     `;
                 });
             });
+    });
+}
+if (btnSpecificUser) {
+    btnSpecificUser.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const id = document.querySelector('#user_id').value;
+        if (id === '') {
+            const displaySpecificUser = document.querySelector('#displaySpecificUser');
+            displaySpecificUser.innerHTML = '';
+            displaySpecificUser.innerHTML = `
+                <p class="text-red-500">Veuillez renseigner un ID</p>
+            `;
+            return;
+        } else {
+        await fetch('/super-week/user/' + id)
+            .then(res => res.json())
+            .then(data => {
+                const displaySpecificUser = document.querySelector('#displaySpecificUser');
+                displaySpecificUser.innerHTML = '';
+                if (data.error) {
+                    displaySpecificUser.innerHTML = `
+                        <p class="text-red-500">${data.error}</p>
+                    `;
+                }
+                if (data.user) {
+                const users = data.user;
+                    displaySpecificUser.innerHTML += `
+                        <div class="flex w-1/3">
+                            <p class="text-gray-500">ID: ${users.id}</p>
+                            <p class="text-gray-500">Prénom: ${users.first_name}</p>
+                            <p class="text-gray-500">Nom: ${users.last_name}</p>
+                            <p class="text-gray-500">Email: ${users.email}</p>
+                        </div>
+                    `;
+                }
+            });
+        }
     });
 }
 

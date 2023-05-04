@@ -8,11 +8,28 @@ class UserController
     {
         require_once __DIR__ . '/../View/users.php';
     }
+    public function showUserPage()
+    {
+        require_once __DIR__ . '/../View/user.php';
+    }
     public function getInfoById($id)
     {
+        if (!isset($id)) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'No id provided']);
+            exit();
+        }
         $userModel = new UserModel();
         $user = $userModel->findOneById($id);
-        require_once __DIR__ . '/../View/user.php';;
+        if (!$user) {
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'User not found']);
+            exit();
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['user' => $user]);
+            exit();
+        }
     }
     public function getAllUsers()
     {

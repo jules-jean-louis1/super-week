@@ -15,7 +15,7 @@ class UserModel extends Database
     public function findOneById($id)
     {
         $bdd = $this->getBdd();
-        $req = $bdd->prepare('SELECT * FROM user WHERE id = :id');
+        $req = $bdd->prepare('SELECT user.id, user.email,user.first_name, user.last_name FROM user WHERE id = :id');
         $req->bindParam(':id', $id);
         $req->execute();
         $user = $req->fetch(\PDO::FETCH_ASSOC);

@@ -56,6 +56,10 @@ if (isset($_SESSION['user'])) {
         $authController->logout();
     }, 'logout');
 }
+// On affiche le formulaire d'ajout d'utilisateur
+$router->map('GET', '/user[/]?', function() use ($userController) {
+    $userController->showUserPage();
+}, 'user');
 // On affiche les informations selon l'id de l'utilisateur
 $router->map('GET', '/user/[i:id]', function($id) use ($userController) {
     $userController->getInfoById($id);
