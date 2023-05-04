@@ -259,7 +259,6 @@ if (formRegister) {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 const smallFirstName = document.querySelector('#errorfName');
                 const smallLastName = document.querySelector('#errorlName');
                 const smallEmail = document.querySelector('#errorEmail');
