@@ -75,8 +75,7 @@ if (BtnDisplayAllBooks) {
         fetch('/super-week/books/all/')
             .then(res => res.json())
             .then(data => {
-                // Supprimer la classe "hidden" pour afficher la liste des livres
-                displayAllBooks.classList.remove('hidden');
+                displayAllBooks.classList.toggle('hidden'); // Ajoute ou supprime la classe "hidden"
                 displayAllBooks.innerHTML = '';
                 displayAllBooks.innerHTML = `
                 <table class="border border-gray-400">
@@ -95,15 +94,13 @@ if (BtnDisplayAllBooks) {
                 data.forEach(book => {
                     AllBooks.innerHTML += `
                     <tr>
-                        <td class="border border-gray-400 px-4 py-2">${book.title}</td>
-                        <td class="border border-gray-400 px-4 py-2 max-w-40p w-7/12">${book.content}</td>
-                        <td class="border border-gray-400 px-4 py-2">${book.first_name} ${book.last_name}</td>
+                        <td class="border border-gray-400 px-4 py-1">${book.title}</td>
+                        <td class="border border-gray-400 px-4 py-1 max-w-40p w-7/12">${book.content}</td>
+                        <td class="border border-gray-400 px-4 py-1">${book.first_name} ${book.last_name}</td>
                     </tr>
                     `;
                 });
             });
-        // Ajouter la classe "hidden" pour masquer la liste des livres
-        displayAllBooks.classList.add('hidden');
     });
 }
 
