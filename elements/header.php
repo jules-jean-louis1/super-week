@@ -1,7 +1,7 @@
 <header class="bg-blue-900 text-white font-semibold mb-4">
     <nav class="flex flex-row w-full justify-between py-4 px-2">
         <ul class="flex space-x-2">
-            <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/">HomePage</a></li>
+            <li><a href="/super-week">HomePage</a></li>
             <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/src/View/book/">Book</a></li>
             <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/src/View/books/">Books</a></li>
             <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/src/View/addbook/">Add Book</a></li>
