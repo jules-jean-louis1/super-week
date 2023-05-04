@@ -13,12 +13,11 @@ $userController = new UserController();
 $bookController = new BookController();
 $homeController = new HomeController();
 $model = new MyModel();
-
 $router = new AltoRouter();
-
 $router->setBasePath("/super-week");
 
 $router->map('GET', '/', function () use ($homeController) {
+    $homeController->displayHead('Homepage');
     $homeController->displayHeader();
 }, 'home');
 
