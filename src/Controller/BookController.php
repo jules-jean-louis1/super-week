@@ -13,6 +13,10 @@ class BookController
     {
         require_once __DIR__ . '/../../src/View/books.php';
     }
+    public function showBookPage()
+    {
+        require_once __DIR__ . '/../../src/View/book.php';
+    }
     public function verifyField($field)
     {
         if (isset($_POST[$field]) && !empty(trim($_POST[$field]))) {

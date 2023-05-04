@@ -79,6 +79,9 @@ $router->map('GET', '/books/all[/]?', function () use ($bookController) {
     $bookController->findAll();
 }, 'books_all');
 // On affiche les informations selon l'id du livre
+$router->map('GET', '/book[/]?', function() use ($bookController) {
+    $bookController->showBookPage();
+}, 'book');
 $router->map('GET', '/book/[i:id]', function($id) use ($bookController) {
     $bookController->getInfoById($id);
 }, 'book_id');
