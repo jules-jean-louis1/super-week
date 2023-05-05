@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Controller;
-use App\Model\MyModel;
 use App\Model\UserModel;
-class AuthController
+class AuthController extends AbstractController
 {
     /**
      * @return void
@@ -27,14 +26,6 @@ class AuthController
      * @param $field
      * @return false|mixed
      */
-    public function verifyField($field)
-    {
-        if (isset($_POST[$field]) && !empty(trim($_POST[$field]))) {
-            return $_POST[$field];
-        } else {
-            return false;
-        }
-    }
     public function register()
     {
         $email = $this->verifyField('Email');

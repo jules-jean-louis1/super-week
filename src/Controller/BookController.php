@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 use App\Model\BooksModel;
-use App\Model\MyModel;
-class BookController
+
+class BookController extends AbstractController
 {
     public function showWriteForm()
     {
@@ -16,14 +16,6 @@ class BookController
     public function showBookPage()
     {
         require_once __DIR__ . '/../../src/View/book.php';
-    }
-    public function verifyField($field)
-    {
-        if (isset($_POST[$field]) && !empty(trim($_POST[$field]))) {
-            return $_POST[$field];
-        } else {
-            return false;
-        }
     }
     public function addBook()
     {

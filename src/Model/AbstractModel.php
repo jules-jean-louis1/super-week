@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-abstract class AbstractModel extends AbstractDatabase
+abstract class AbstractModel extends AbstractDatabase implements ModelInterface
 {
     protected string $table;
     protected int $id;
