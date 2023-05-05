@@ -1,4 +1,4 @@
-<?php if (isset($_SESSION['id'])) { ?>
+<?php if (empty($_SESSION)) { ?>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
