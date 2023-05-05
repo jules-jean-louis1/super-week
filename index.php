@@ -2,10 +2,12 @@
 session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 
-use App\Controller\AuthController;
-use App\Controller\UserController;
-use App\Controller\BookController;
-use App\Controller\HomeController;
+use App\Controller\{
+    AuthController,
+    UserController,
+    BookController,
+    HomeController,
+};
 use App\Model\MyModel;
 
 $authController = new AuthController();

@@ -12,7 +12,12 @@ class UserController
     {
         require_once __DIR__ . '/../View/user.php';
     }
-    public function getInfoById($id)
+
+    /**
+     * @param $id int ID of the user
+     * @return void
+     */
+    public function getInfoById(int $id)
     {
         if (!isset($id)) {
             header('Content-Type: application/json');

@@ -19,6 +19,11 @@ class Database
         }
 
     }
+
+    /**
+     * Method for BDD
+     * @return PDO
+     */
     public function getBdd()
     {
         return $this->bdd;

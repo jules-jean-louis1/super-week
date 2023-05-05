@@ -4,6 +4,9 @@ namespace App\Model;
 use App\Model\Database;
 class UserModel extends Database
 {
+    /**
+     * @return array
+     */
     public function findAll()
     {
         $bdd = $this->getBdd();
@@ -12,7 +15,12 @@ class UserModel extends Database
         $users = $req->fetchAll(\PDO::FETCH_ASSOC);
         return $users;
     }
-    public function findOneById($id)
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findOneById(int $id)
     {
         $bdd = $this->getBdd();
         $req = $bdd->prepare('SELECT user.id, user.email,user.first_name, user.last_name FROM user WHERE id = :id');
@@ -21,7 +29,12 @@ class UserModel extends Database
         $user = $req->fetch(\PDO::FETCH_ASSOC);
         return $user;
     }
-    public function verifyEmail($email)
+
+    /**
+     * @param string $email
+     * @return bool
+     */
+    public function verifyEmail(string $email)
     {
         $bdd = $this->getBdd();
         $req = $bdd->prepare('SELECT * FROM user WHERE email = :email');
@@ -34,7 +47,15 @@ class UserModel extends Database
             return false;
         }
     }
-    public function register($email, $fName, $lName, $password)
+
+    /**
+     * @param string $email Email of the user
+     * @param string $fName First name of the user
+     * @param string $lName Last name of the user
+     * @param string $password  Password of the user
+     * @return void Return nothing
+     */
+    public function register(string $email, string $fName, string $lName, string $password)
     {
         $bdd = $this->getBdd();
         $req = $bdd->prepare('INSERT INTO user (email, first_name, last_name, password) VALUES (:email, :first_name, :last_name, :password)');
@@ -46,6 +67,12 @@ class UserModel extends Database
             ':password' => $password
         ]);
     }
+
+    /**
+     * @param string $email Email of the user
+     * @param string $password Password of the user
+     * @return array|false|null Return the user if the password is correct, false if the password is incorrect and null if the user doesn't exist
+     */
     public function login(string $email, string $password)
     {
         $bdd = $this->getBdd();
