@@ -1,3 +1,4 @@
+<?php if (isset($_SESSION['id'])) { ?>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -27,5 +28,7 @@
     </form>
 </div>
 </body>
-
 </html>
+<?php } else {
+    header('Location: /super-week');
+} ?>
