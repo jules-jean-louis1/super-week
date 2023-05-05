@@ -4,9 +4,10 @@ namespace App\Model;
 
 use PDO;
 
-class Database
+abstract class AbstractDatabase implements DatabaseInterface
 {
     private $bdd;
+
     public function __construct()
     {
         // Connexion a la base de données LOCAL
@@ -17,14 +18,9 @@ class Database
             echo 'Connexion échouée : ' . $e->getMessage();
             exit;
         }
-
     }
 
-    /**
-     * Method for BDD
-     * @return PDO
-     */
-    public function getBdd()
+    public function getBdd(): PDO
     {
         return $this->bdd;
     }

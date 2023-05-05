@@ -8,13 +8,11 @@ use App\Controller\{
     BookController,
     HomeController,
 };
-use App\Model\MyModel;
 
 $authController = new AuthController();
 $userController = new UserController();
 $bookController = new BookController();
 $homeController = new HomeController();
-$model = new MyModel();
 $router = new AltoRouter();
 $router->setBasePath("/super-week");
 

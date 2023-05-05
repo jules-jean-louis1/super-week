@@ -42,7 +42,7 @@ class BookController
                 $errors['description'] = 'La description doit contenir au moins 10 caractères';
             }
             if (count($errors) === 0) {
-                $bookModel = new MyModel();
+                $bookModel = new BooksModel();
                 $bookModel->addBook(htmlspecialchars($title), htmlspecialchars($description), htmlspecialchars($_SESSION['id']));
                 $errors['success'] = 'Le livre a bien été ajouté';
             } else {

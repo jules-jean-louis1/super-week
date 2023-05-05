@@ -1,19 +1,17 @@
 <?php
 
 namespace App\Model;
-use App\Model\Database;
-class UserModel extends Database
+class UserModel extends AbstractModel
 {
+    protected string $table = "SELECT * FROM user";
+    protected int $id;
+    protected string $requestById = "SELECT * FROM user WHERE id = :id";
     /**
      * @return array
      */
     public function findAll()
     {
-        $bdd = $this->getBdd();
-        $req = $bdd->prepare('SELECT * FROM user');
-        $req->execute();
-        $users = $req->fetchAll(\PDO::FETCH_ASSOC);
-        return $users;
+        return parent::findAll();
     }
 
     /**
@@ -22,12 +20,7 @@ class UserModel extends Database
      */
     public function findOneById(int $id)
     {
-        $bdd = $this->getBdd();
-        $req = $bdd->prepare('SELECT user.id, user.email,user.first_name, user.last_name FROM user WHERE id = :id');
-        $req->bindParam(':id', $id);
-        $req->execute();
-        $user = $req->fetch(\PDO::FETCH_ASSOC);
-        return $user;
+        return parent::findOneById($id, $this->requestById);
     }
 
     /**
