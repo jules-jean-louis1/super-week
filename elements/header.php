@@ -3,7 +3,7 @@
         <ul class="flex space-x-2">
             <li><a href="/super-week">HomePage</a></li>
             <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/src/View/book/">Book</a></li>
-            <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/src/View/books/">Books</a></li>
+            <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/books/">Books</a></li>
             <li><a href="<?= dirname($_SERVER['SCRIPT_NAME']) ?>/src/View/addbook/">Add Book</a></li>
             <li><a href="">User</a></li>
             <li><a href="">Users</a></li>
