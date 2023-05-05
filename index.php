@@ -93,6 +93,5 @@ if( $match && is_callable( $match['target'] ) ) {
     ?>
     <h1 class="text-center font-bold">404 Page Not Found</h1>
     <?php
-
 }
 ?>
