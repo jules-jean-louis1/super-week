@@ -213,17 +213,42 @@ if (formLogin) {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                const emailInput = document.querySelector('#Email');
+                const PasswordInput = document.querySelector('#Password');
                 const smallEmail = document.querySelector('#errorEmail');
                 const smallPassword = document.querySelector('#errorPassword');
                 const Alert = document.querySelector('#alertMessage');
                 if (data.email){
+                    emailInput.addEventListener('keyup', () => {
+                        const emailValue = emailInput.value;
+                        if (emailValue === ''){
+                            smallEmail.innerHTML = '';
+                            smallEmail.innerHTML = data.email;
+                            emailInput.classList.add('textField_invalid');
+                        } else {
+                            smallEmail.innerHTML = '';
+                            emailInput.classList.remove('textField_invalid');
+                        }
+                    });
                     smallEmail.innerHTML = '';
                     smallEmail.innerHTML = data.email;
+                    emailInput.classList.add('textField_invalid');
                 }
                 if (data.password){
+                    PasswordInput.addEventListener('keyup', () => {
+                        const passwordValue = PasswordInput.value;
+                        if (passwordValue === ''){
+                            smallPassword.innerHTML = '';
+                            smallPassword.innerHTML = data.password;
+                            PasswordInput.classList.add('textField_invalid');
+                        } else {
+                            smallPassword.innerHTML = '';
+                            PasswordInput.classList.remove('textField_invalid');
+                        }
+                    });
                     smallPassword.innerHTML = '';
                     smallPassword.innerHTML = data.password;
+                    PasswordInput.classList.add('textField_invalid');
                 }
                 if (data.error){
                     Alert.innerHTML = '';
@@ -233,6 +258,10 @@ if (formLogin) {
                 }
                 if (data.success){
                     Alert.innerHTML = '';
+                    smallEmail.innerHTML = '';
+                    smallPassword.innerHTML = '';
+                    PasswordInput.classList.remove('textField_invalid');
+                    emailInput.classList.remove('textField_invalid');
                     Alert.innerHTML = `
                         <p class="text-green-500 p-2 border-2 border-green-500 bg-green-500 bg-opacity-10 rounded">${data.success}</p>
                         `;

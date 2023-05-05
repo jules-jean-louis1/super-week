@@ -27,6 +27,7 @@
         <button type="submit" class="bg-purple-400 p-2 text-white font-semibold rounded">Register</button>
     </form>
 </div>
+<?php require_once __DIR__ . '/../../elements/footer.php'; ?>
 </body>
 </html>
 <?php } else {

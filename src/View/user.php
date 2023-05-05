@@ -21,5 +21,6 @@
 <div class="flex justify-center">
     <div class="w-full flex flex-wrap" id="displaySpecificUser"></div>
 </div>
+<?php require_once __DIR__ . '/../../elements/footer.php'; ?>
 </body>
 </html>

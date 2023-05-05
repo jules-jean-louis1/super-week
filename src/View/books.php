@@ -14,5 +14,6 @@
     <button id="buttonDisplayBooks" class="p-2 rounded bg-blue-500 hover:bg-blue-800 mt-6 text-white">Afficher la liste des livres</button>
 </div>
 <div id="displayAllBooks" class="hidden"></div>
+<?php require_once __DIR__ . '/../../elements/footer.php'; ?>
 </body>
 </html>

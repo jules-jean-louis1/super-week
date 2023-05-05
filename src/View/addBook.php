@@ -18,5 +18,6 @@
     </div>
         <div id="error"></div>
 </form>
+<?php require_once __DIR__ . '/../../elements/footer.php'; ?>
 </body>
 </html>
